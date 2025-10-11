@@ -13,13 +13,12 @@ fundamentals.
 #### 1. **Client**: Interactive SQL Shell
 
 - Command-line interface with readline support
-- Beautiful table formatting and error handling
 - Network communication with the server
 
 #### 2. **Server**: Multi-threaded TCP Server
 
-- JSON-based protocol for client communication
-- Concurrent client handling with proper isolation
+- Customized protocol for client communication
+- Concurrent client handling with 
 - Structured logging and monitoring
 - Configuration management and graceful shutdown
 
@@ -35,23 +34,23 @@ fundamentals.
 ### Client-Server Communication
 
 ```
-┌─────────────┐    JSON/TCP    ┌─────────────┐    Function    ┌─────────────┐
-│   Client    │◄──────────────►│   Server    │     Calls      │  Database   │
-│             │   Raw SQL      │             │   Raw SQL      │   Engine    │
-│ - CLI       │                │ - TCP       │                │ - Parser    │
-│ - Formatter │                │ - Protocol  │                │ - Executor  │
-│ - Network   │                │ - Routing   │                │ - Storage   │
-└─────────────┘                └─────────────┘                └─────────────┘
+┌─────────────┐ Custom Protocol  ┌─────────────┐    Function    ┌─────────────┐
+│   Client    │◄────────────────►│   Server    │     Calls      │  Database   │
+│             │   Raw SQL        │             │    Raw SQL     │   Engine    │
+│ - CLI       │                  │ - TCP       │                │ - Parser    │
+│ - Formatter │                  │ - Protocol  │                │ - Executor  │
+│ - Network   │                  │ - Routing   │                │ - Storage   │
+└─────────────┘                  └─────────────┘                └─────────────┘
 ```
 
 ### Data Flow Example
 
 1. **User Input**: `SELECT name, age FROM users WHERE age > 25;`
-2. **Client**: Sends raw SQL string in JSON request to server
-3. **Server**: Receives JSON, extracts SQL, forwards to database engine
-4. **Database**: Lexes → Parses → Executes → Returns results
-5. **Server**: Packages results as JSON, sends to client
-6. **Client**: Receives JSON, displays formatted table to user
+2. **Client**: Packages raw SQL in simple protocol message, sends to server  
+3. **Server**: Receives protocol message, extracts SQL, forwards to database engine
+4. **Database**: Lexes → Parses → Executes → Returns structured results
+5. **Server**: Packages results in protocol response, sends to client
+6. **Client**: Receives response, extracts data, displays formatted table to user
 
 ## 📚 Learning Progression
 
