@@ -1,5 +1,5 @@
 #!/bin/bash
-# run_simplified_tests.sh - Simplified test runner for Phase 1 Task 2
+# run_all_tests.sh - Simplified test runner for Phase 1 Task 2
 # Interactive Shell Implementation (No 3rd party libraries required)
 
 set -e
@@ -20,12 +20,12 @@ NC='\033[0m' # No Color
 # Helper functions
 log_header() {
     echo -e "${BLUE}${BOLD}$1${NC}"
-    echo -e "${BLUE}$(printf '=%.0s' $(seq 1 ${#1}))${NC}"
+    echo -e "${BLUE}$(printf '%*s' ${#1} | tr ' ' '=')${NC}"
 }
 
 log_section() {
     echo -e "\n${YELLOW}${BOLD}$1${NC}"
-    echo -e "${YELLOW}$(printf '-%.0s' $(seq 1 ${#1}))${NC}"
+    echo -e "${YELLOW}$(printf '%*s' ${#1} | tr ' ' '-')${NC}"
 }
 
 log_info() {

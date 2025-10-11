@@ -291,15 +291,15 @@ third-party dependencies.
 
 ```bash
 # Run all tests
-./test-suite/phase-1/task-2/run_simplified_tests.sh
+./test-suite/phase-1/task-2/run_all_tests.sh
 
 # Run specific test category
-./test-suite/phase-1/task-2/run_simplified_tests.sh --test basic
-./test-suite/phase-1/task-2/run_simplified_tests.sh --test input
-./test-suite/phase-1/task-2/run_simplified_tests.sh --test signals
+./test-suite/phase-1/task-2/run_all_tests.sh --test basic
+./test-suite/phase-1/task-2/run_all_tests.sh --test input
+./test-suite/phase-1/task-2/run_all_tests.sh --test signals
 
 # Specify custom implementation path
-./test-suite/phase-1/task-2/run_simplified_tests.sh --implementation my-custom-path
+./test-suite/phase-1/task-2/run_all_tests.sh --implementation my-custom-path
 ```
 
 ### Success Criteria

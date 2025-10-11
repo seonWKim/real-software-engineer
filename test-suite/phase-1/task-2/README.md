@@ -19,7 +19,7 @@ The interactive shell focuses on core functionality using only standard library 
 ```
 test-suite/phase-1/task-2/
 ├── README.md                     # This documentation
-├── run_simplified_tests.sh       # Simplified test runner (recommended)
+├── run_all_tests.sh              # Simplified test runner (recommended)
 ├── test_basic_interactive.sh     # Basic interactive functionality
 ├── test_input_handling.sh        # Input handling tests
 └── test_basic_signals.sh         # Basic signal handling tests
@@ -88,23 +88,23 @@ student-submissions/my-implementation/client
 
 ```bash
 # From project root - recommended approach
-./test-suite/phase-1/task-2/run_simplified_tests.sh
+./test-suite/phase-1/task-2/run_all_tests.sh
 
 # With custom implementation path
-./test-suite/phase-1/task-2/run_simplified_tests.sh --implementation my-custom-path
+./test-suite/phase-1/task-2/run_all_tests.sh --implementation my-custom-path
 ```
 
 ### Run Specific Test Categories
 
 ```bash
 # Basic interactive functionality only
-./test-suite/phase-1/task-2/run_simplified_tests.sh --test basic
+./test-suite/phase-1/task-2/run_all_tests.sh --test basic
 
 # Input handling only
-./test-suite/phase-1/task-2/run_simplified_tests.sh --test input
+./test-suite/phase-1/task-2/run_all_tests.sh --test input
 
 # Basic signal handling only
-./test-suite/phase-1/task-2/run_simplified_tests.sh --test signals
+./test-suite/phase-1/task-2/run_all_tests.sh --test signals
 ```
 
 ### Run Individual Test Scripts
@@ -122,7 +122,7 @@ export IMPLEMENTATION_DIR="student-submissions/my-implementation"
 ### Command Line Options
 
 ```bash
-./test-suite/phase-1/task-2/run_simplified_tests.sh [OPTIONS]
+./test-suite/phase-1/task-2/run_all_tests.sh [OPTIONS]
 
 Options:
   -h, --help              Show help message
