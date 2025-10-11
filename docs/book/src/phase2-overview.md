@@ -22,7 +22,7 @@ By completing Phase 2, you will gain practical experience in:
 ### Core Features
 
 - **TCP Server**: Accept and manage multiple client connections
-- **JSON Protocol**: Structured request/response communication
+- **Custom Protocol**: Simple structured request/response communication
 - **SQL Routing**: Forward raw SQL strings to database engine
 - **Connection Management**: Handle client lifecycle and resource cleanup
 - **Structured Logging**: Comprehensive logging for debugging and monitoring
@@ -38,7 +38,7 @@ server/
 │   ├── listener.{ext}        # TCP server and connection acceptance
 │   └── handler.{ext}         # Individual client connection handling
 ├── protocol/
-│   ├── json.{ext}            # JSON request/response parsing
+│   ├── message.{ext}         # Custom protocol request/response parsing
 │   ├── framing.{ext}         # TCP message framing
 │   └── router.{ext}          # Route requests to database engine
 ├── connection/
@@ -59,9 +59,9 @@ server/
 
 Set up a TCP server that can accept client connections and handle the connection lifecycle with proper error handling.
 
-### Task 2: JSON Protocol Implementation
+### Task 2: Custom Protocol Implementation
 
-Define and implement the JSON-based protocol for client-server communication, focusing on message structure and
+Define and implement the custom protocol for client-server communication, focusing on message structure and
 validation.
 
 ### Task 3: Message Framing
@@ -97,10 +97,10 @@ Integrate with your Phase 1 client and prepare the server for Phase 3 database e
 The Phase 2 server has **zero SQL intelligence**. Its only job is:
 
 1. **Accept** client TCP connections
-2. **Parse** JSON requests to extract raw SQL strings
+2. **Parse** protocol messages to extract raw SQL strings
 3. **Forward** SQL strings to database engine (function calls)
-4. **Package** database results into JSON responses
-5. **Send** JSON responses back to clients
+4. **Package** database results into protocol responses
+5. **Send** protocol responses back to clients
 6. **Manage** connection lifecycle and resources
 
 The server never parses, validates, or understands SQL - it's purely a networking and routing layer.
@@ -111,7 +111,7 @@ The server never parses, validates, or understands SQL - it's purely a networkin
 ### Functionality
 
 - ✅ Handles 100+ concurrent client connections
-- ✅ Processes JSON protocol messages correctly
+- ✅ Processes custom protocol messages correctly
 - ✅ Forwards raw SQL strings to database engine
 - ✅ Maintains stable operation under load
 - ✅ Graceful startup and shutdown procedures
@@ -152,7 +152,7 @@ The server never parses, validates, or understands SQL - it's purely a networkin
 
 ### Unit Tests
 
-- JSON protocol parsing and generation
+- Custom protocol parsing and generation
 - Connection management logic
 - Configuration loading and validation
 - Error handling scenarios

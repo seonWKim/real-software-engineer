@@ -20,7 +20,7 @@
 
 - [Server Overview](./phase2-overview.md)
     - [Task 1: Basic TCP Server](./phase2-01-tcp-server.md)
-    - [Task 2: JSON Protocol](./phase2-02-json-protocol.md)
+    - [Task 2: Custom Protocol](./phase2-02-protocol.md)
     - [Task 3: Message Framing](./phase2-03-message-framing.md)
     - [Task 4: Concurrency Implementation](./phase2-04-concurrency.md)
     - [Task 5: Connection Management](./phase2-05-connection-management.md)
