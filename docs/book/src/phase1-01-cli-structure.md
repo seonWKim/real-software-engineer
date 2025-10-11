@@ -33,6 +33,7 @@ client/
 First, implement the main entry point that can handle multiple input methods:
 
 ### Interactive Mode
+
 ```bash
 ./client
 sql> SELECT * FROM users;
@@ -41,62 +42,62 @@ sql> exit
 ```
 
 ### File Input
+
 ```bash
 ./client -f queries.sql
 # Should execute all SQL statements in the file
 ```
 
 ### Piped Input
+
 ```bash
 echo "SELECT * FROM users;" | ./client
 # Should process the piped SQL and output results
 ```
 
 ### Direct Command
+
 ```bash
 ./client "SELECT * FROM users;"
 # Should execute the command and output results immediately
 ```
 
 Your main function should:
+
 1. Parse command-line arguments to determine input method
 2. Initialize the appropriate input handler
 3. Process SQL commands and return mock responses
 4. Handle graceful shutdown
 
-## Step 2: Basic SQL Command Recognition
+## Step 2: Raw SQL Command Handling
 
-For Phase 1, implement simple command recognition to identify SQL statement types:
+For Phase 1, the client treats SQL as opaque strings. No parsing is required - just basic validation and preparation for
+network transmission:
 
 ```rust
-// Example command recognition (adapt to your language)
-enum SqlCommand {
-    Select,
-    Insert, 
-    Update,
-    Delete,
-    CreateTable,
-    DropTable,
-    Unknown(String),
+// Example command handling (adapt to your language)
+struct SqlCommand {
+    raw_sql: String,
+    timestamp: SystemTime,
 }
 
-fn recognize_command(sql: &str) -> SqlCommand {
-    let trimmed = sql.trim().to_uppercase();
-    if trimmed.starts_with("SELECT") {
-        SqlCommand::Select
-    } else if trimmed.starts_with("INSERT") {
-        SqlCommand::Insert
-    } else if trimmed.starts_with("UPDATE") {
-        SqlCommand::Update
-    } else if trimmed.starts_with("DELETE") {
-        SqlCommand::Delete
-    } else if trimmed.starts_with("CREATE TABLE") {
-        SqlCommand::CreateTable
-    } else if trimmed.starts_with("DROP TABLE") {
-        SqlCommand::DropTable
-    } else {
-        SqlCommand::Unknown(sql.to_string())
+fn prepare_command(input: &str) -> Result<SqlCommand, ClientError> {
+    let trimmed = input.trim();
+
+    // Basic validation - just check if it's not empty
+    if trimmed.is_empty() {
+        return Err(ClientError::EmptyCommand);
     }
+
+    // Handle special client commands (not SQL)
+    if trimmed.eq_ignore_ascii_case("exit") || trimmed.eq_ignore_ascii_case("quit") {
+        return Err(ClientError::ExitRequested);
+    }
+
+    Ok(SqlCommand {
+        raw_sql: trimmed.to_string(),
+        timestamp: SystemTime::now(),
+    })
 }
 ```
 
@@ -105,6 +106,7 @@ fn recognize_command(sql: &str) -> SqlCommand {
 Create mock responses for different SQL commands to establish the interface:
 
 ### Sample Data
+
 ```rust
 // Example mock data structure
 struct MockTable {
@@ -125,31 +127,31 @@ fn create_mock_users_table() -> MockTable {
 ```
 
 ### Response Generation
+
 ```rust
-fn generate_mock_response(command: SqlCommand) -> MockTable {
-    match command {
-        SqlCommand::Select => {
-            // Return mock table data
-            create_mock_users_table()
-        },
-        SqlCommand::Insert => {
-            // Return success message
-            MockTable {
-                columns: vec!["result".to_string()],
-                rows: vec![vec!["1 row inserted".to_string()]],
-            }
-        },
-        SqlCommand::CreateTable => {
-            MockTable {
-                columns: vec!["result".to_string()],
-                rows: vec![vec!["Table created successfully".to_string()]],
-            }
-        },
-        _ => {
-            MockTable {
-                columns: vec!["error".to_string()],
-                rows: vec![vec!["Command not implemented yet".to_string()]],
-            }
+fn generate_mock_response(command: &SqlCommand) -> MockTable {
+    let sql_upper = command.raw_sql.to_uppercase();
+
+    // Simple keyword detection for mock responses (no real parsing)
+    if sql_upper.contains("SELECT") {
+        // Return mock table data
+        create_mock_users_table()
+    } else if sql_upper.contains("INSERT") {
+        // Return success message
+        MockTable {
+            columns: vec!["result".to_string()],
+            rows: vec![vec!["1 row inserted".to_string()]],
+        }
+    } else if sql_upper.contains("CREATE") {
+        MockTable {
+            columns: vec!["result".to_string()],
+            rows: vec![vec!["Table created successfully".to_string()]],
+        }
+    } else {
+        // Default response for any SQL
+        MockTable {
+            columns: vec!["message".to_string()],
+            rows: vec![vec![format!("Mock response for: {}", command.raw_sql)]],
         }
     }
 }
@@ -171,6 +173,7 @@ Implement simple table formatting for the mock responses:
 ```
 
 Key formatting requirements:
+
 - Automatic column width calculation
 - Unicode box-drawing characters
 - Proper alignment (left for strings, right for numbers)
@@ -191,6 +194,7 @@ Implement basic argument parsing to support the different input methods:
 ### Example Implementation Structure
 
 #### Rust with clap
+
 ```rust
 use clap::{App, Arg, ArgMatches};
 
@@ -211,6 +215,7 @@ fn parse_args() -> ArgMatches {
 ```
 
 #### C++ with CLI11
+
 ```cpp
 #include <CLI/CLI.hpp>
 
@@ -253,12 +258,12 @@ fn handle_error(error: ClientError) {
         ClientError::FileNotFound(filename) => {
             eprintln!("Error: File '{}' not found", filename);
             eprintln!("Please check the file path and try again.");
-        },
+        }
         ClientError::InvalidSql(sql) => {
             eprintln!("Error: Invalid SQL command");
             eprintln!("  {}", sql);
             eprintln!("Please check your SQL syntax.");
-        },
+        }
         ClientError::IoError(msg) => {
             eprintln!("Error: I/O operation failed: {}", msg);
         }
@@ -271,6 +276,7 @@ fn handle_error(error: ClientError) {
 Test each input method to ensure they work correctly:
 
 ### Test Interactive Mode
+
 ```bash
 ./client
 sql> SELECT * FROM users;
@@ -281,12 +287,21 @@ sql> exit
 ```
 
 ### Test File Input
+
 Create a test file:
+
 ```sql
 -- test.sql
-SELECT * FROM users;
-CREATE TABLE products (id INTEGER, name VARCHAR(100), price DECIMAL(10,2));
-INSERT INTO products VALUES (1, 'Laptop', 999.99);
+SELECT *
+FROM users;
+CREATE TABLE products
+(
+    id    INTEGER,
+    name  VARCHAR(100),
+    price DECIMAL(10, 2)
+);
+INSERT INTO products
+VALUES (1, 'Laptop', 999.99);
 ```
 
 ```bash
@@ -295,12 +310,14 @@ INSERT INTO products VALUES (1, 'Laptop', 999.99);
 ```
 
 ### Test Piped Input
+
 ```bash
 echo "SELECT * FROM users;" | ./client
 # Should process and display results
 ```
 
 ### Test Direct Command
+
 ```bash
 ./client "SELECT * FROM users WHERE age > 25;"
 # Should execute and display results immediately
@@ -309,6 +326,7 @@ echo "SELECT * FROM users;" | ./client
 ## Performance Requirements
 
 Your basic client should meet these criteria:
+
 - **Startup time**: < 500ms
 - **Command processing**: < 100ms for mock responses
 - **Memory usage**: < 20MB for basic operations
@@ -316,6 +334,7 @@ Your basic client should meet these criteria:
 ## Language-Specific Tips
 
 ### Rust
+
 ```rust
 // Use clap for arguments, std::io for input handling
 use clap::App;
@@ -331,6 +350,7 @@ enum InputSource {
 ```
 
 ### C++
+
 ```cpp
 // Use CLI11 for arguments, iostream for input
 #include <CLI/CLI.hpp>
@@ -347,6 +367,7 @@ public:
 ```
 
 ### Go
+
 ```go
 // Use cobra for CLI, bufio for input handling
 import (
@@ -362,6 +383,7 @@ type InputReader interface {
 ```
 
 ### Python
+
 ```python
 # Use click for CLI, sys for input handling
 import click
@@ -388,16 +410,19 @@ def get_input_source(file_path: str = None, command: str = None) -> Iterator[str
 ```
 
 ### Java
+
 ```java
 // Use picocli for CLI, Scanner for input
+
 import picocli.CommandLine;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
 public class InputHandler {
     private Scanner scanner;
-    
+
     public InputHandler(String source) throws FileNotFoundException {
         if (source == null) {
             scanner = new Scanner(System.in);
@@ -418,6 +443,7 @@ public class InputHandler {
 - **File Encoding**: Support UTF-8 input files correctly
 - **Empty Commands**: Handle empty lines and whitespace-only input
 - **Resource Cleanup**: Close files and clean up resources properly
+
 </div>
 
 ## Test Your Understanding
@@ -431,6 +457,7 @@ public class InputHandler {
 ## Next Steps
 
 Once Task 1 is complete:
+
 1. **Validate** with the test runner to ensure all basic functionality works
 2. **Test** each input method thoroughly
 3. **Document** your command recognition and response generation logic

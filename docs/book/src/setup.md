@@ -5,12 +5,14 @@ This chapter guides you through setting up your development environment for buil
 ## Prerequisites
 
 ### System Requirements
+
 - **Operating System**: Linux, macOS, or Windows with WSL2
 - **Memory**: At least 4GB RAM (8GB recommended)
 - **Storage**: 2GB free space for tools and project files
 - **Network**: Internet connection for downloading dependencies
 
 ### Required Tools
+
 - **Git**: Version control and project management
 - **Text Editor/IDE**: Your preferred code editor
 - **Programming Language**: Choose one from the supported languages below
@@ -20,6 +22,7 @@ This chapter guides you through setting up your development environment for buil
 Choose the programming language you're most comfortable with. All languages have equal support in the testing framework.
 
 ### Rust (Recommended for Learning)
+
 ```bash
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -34,6 +37,7 @@ cargo --version
 **Cons**: Steeper learning curve if you're new to Rust
 
 ### C++
+
 ```bash
 # On Ubuntu/Debian
 sudo apt update
@@ -52,6 +56,7 @@ cmake --version
 **Cons**: Manual memory management, potential for security issues
 
 ### Go
+
 ```bash
 # Download from https://golang.org/dl/
 # Or on macOS
@@ -65,6 +70,7 @@ go version
 **Cons**: Garbage collection overhead, less control over memory
 
 ### Java
+
 ```bash
 # Install OpenJDK
 # On Ubuntu/Debian
@@ -83,6 +89,7 @@ mvn --version
 **Cons**: Verbose syntax, JVM overhead
 
 ### Python
+
 ```bash
 # Python 3.8+ required
 python3 --version
@@ -98,12 +105,14 @@ pip3 install virtualenv pipenv
 ## Project Setup
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/your-org/real-software-engineer.git
 cd real-software-engineer
 ```
 
 ### 2. Navigate to Your Workspace
+
 ```bash
 cd student-submissions/my-implementation
 ```
@@ -111,6 +120,7 @@ cd student-submissions/my-implementation
 ### 3. Initialize Your Project
 
 #### For Rust
+
 ```bash
 cargo init --name my-database
 cd my-database
@@ -126,6 +136,7 @@ tabled = "0.14"' >> Cargo.toml
 ```
 
 #### For C++
+
 ```bash
 mkdir my-database && cd my-database
 mkdir src include tests
@@ -149,6 +160,7 @@ EOF
 ```
 
 #### For Go
+
 ```bash
 mkdir my-database && cd my-database
 go mod init my-database
@@ -158,6 +170,7 @@ mkdir -p cmd/client cmd/server internal/database internal/server internal/client
 ```
 
 #### For Java
+
 ```bash
 mvn archetype:generate -DgroupId=com.example.database \
     -DartifactId=my-database \
@@ -168,6 +181,7 @@ cd my-database
 ```
 
 #### For Python
+
 ```bash
 mkdir my-database && cd my-database
 python3 -m venv venv
@@ -214,19 +228,23 @@ my-database/
 ## Test Framework Setup
 
 ### 1. Verify Test Runner
+
 ```bash
 # From the root project directory
 ./tools/test-runner/run_tests.sh --help
 ```
 
 ### 2. Run Initial Tests
+
 ```bash
 # This should show available tests (will fail until you implement)
 ./tools/test-runner/run_tests.sh --phase 1 --implementation student-submissions/my-implementation
 ```
 
 ### 3. Understand Test Output
+
 The test runner will:
+
 - ✅ **PASS**: Your implementation meets requirements
 - ❌ **FAIL**: Issues found, check error messages
 - ⚠️ **SKIP**: Test not applicable to current phase
@@ -236,6 +254,7 @@ The test runner will:
 ### Language Servers and IDE Setup
 
 #### VS Code Extensions
+
 - **Rust**: rust-analyzer
 - **C++**: C/C++ Extension Pack
 - **Go**: Go extension
@@ -243,6 +262,7 @@ The test runner will:
 - **Python**: Python extension
 
 #### Useful Tools
+
 ```bash
 # Code formatting and linting
 # Choose based on your language
@@ -259,6 +279,7 @@ sudo apt install ripgrep
 ```
 
 ### Database Tools (For Reference)
+
 ```bash
 # Install SQLite for reference and testing
 # On macOS
@@ -276,6 +297,7 @@ sudo apt install postgresql-client
 ## Verification
 
 ### Test Your Setup
+
 Run this verification script to ensure everything is working:
 
 ```bash
@@ -309,17 +331,20 @@ rm test*
 ```
 
 ### Check Dependencies
+
 Make sure you can import/include the essential libraries for your chosen language.
 
 ## Common Issues
 
 ### Permission Errors
+
 ```bash
 # If you get permission errors with test runner
 chmod +x tools/test-runner/run_tests.sh
 ```
 
 ### Path Issues
+
 ```bash
 # Ensure tools are in your PATH
 export PATH=$PATH:$(pwd)/tools/test-runner
@@ -328,22 +353,27 @@ export PATH=$PATH:$(pwd)/tools/test-runner
 ### Language-Specific Issues
 
 #### Rust
+
 - **Issue**: `cargo` command not found
 - **Solution**: Restart terminal or run `source ~/.cargo/env`
 
 #### C++
+
 - **Issue**: Missing compiler
 - **Solution**: Install build tools for your platform
 
 #### Go
+
 - **Issue**: Module not found
 - **Solution**: Ensure you're in the correct directory with `go.mod`
 
 #### Java
+
 - **Issue**: Wrong Java version
 - **Solution**: Install Java 11+ and set `JAVA_HOME`
 
 #### Python
+
 - **Issue**: Import errors
 - **Solution**: Activate virtual environment and install requirements
 
