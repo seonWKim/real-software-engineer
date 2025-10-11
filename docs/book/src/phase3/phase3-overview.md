@@ -32,7 +32,7 @@ By completing Phase 3, you will gain practical experience in:
 
 ### Database Engine Architecture
 
-<div class="file-tree">
+```
 database/
 ├── lexer/
 │   ├── tokenizer.{ext}       # SQL tokenization engine
@@ -62,7 +62,7 @@ database/
 │   └── planner.{ext}         # Query planning and optimization
 └── integration/
     └── server.{ext}          # Integration with Phase 2 server
-</div>
+```
 
 ## Task Breakdown
 
@@ -97,8 +97,7 @@ Integrate the SQL engine with your Phase 2 server to create a complete client-se
 
 ## The SQL Intelligence Starts Here
 
-<div class="task-box">
-<h4>🧠 From Strings to Intelligence</h4>
+**🧠 From Strings to Intelligence**
 
 Phase 3 is where your system gains **SQL intelligence**:
 
@@ -107,7 +106,6 @@ Phase 3 is where your system gains **SQL intelligence**:
 - **Phase 3 Database**: **Understands SQL semantics and executes queries**
 
 This is the first component that actually "knows" what `SELECT * FROM users WHERE age > 25` means!
-</div>
 
 ## SQL Grammar Subset
 
@@ -182,15 +180,14 @@ DELETE FROM table_name [WHERE condition];
 
 ## Performance Requirements
 
-<table class="perf-table">
-<tr><th>Component</th><th>Operation</th><th>Target</th><th>Dataset</th></tr>
-<tr><td>Lexer</td><td>Tokenization</td><td>&lt; 1ms</td><td>Typical SQL statement</td></tr>
-<tr><td>Parser</td><td>AST construction</td><td>&lt; 5ms</td><td>Complex SELECT query</td></tr>
-<tr><td>Executor</td><td>Simple SELECT</td><td>&lt; 10ms</td><td>1K records</td></tr>
-<tr><td>Executor</td><td>Complex JOIN</td><td>&lt; 100ms</td><td>10K records</td></tr>
-<tr><td>Executor</td><td>Aggregation</td><td>&lt; 50ms</td><td>10K records</td></tr>
-<tr><td>DDL</td><td>CREATE TABLE</td><td>&lt; 1ms</td><td>Schema operation</td></tr>
-</table>
+| Component | Operation | Target | Dataset |
+|-----------|-----------|--------|---------|
+| Lexer | Tokenization | < 1ms | Typical SQL statement |
+| Parser | AST construction | < 5ms | Complex SELECT query |
+| Executor | Simple SELECT | < 10ms | 1K records |
+| Executor | Complex JOIN | < 100ms | 10K records |
+| Executor | Aggregation | < 50ms | 10K records |
+| DDL | CREATE TABLE | < 1ms | Schema operation |
 
 ## Testing Strategy
 
@@ -270,8 +267,7 @@ Your Phase 3 implementation should be designed for Phase 4 storage integration:
 
 ## Common Challenges
 
-<div class="warning-box">
-<h4>⚠️ Common Pitfalls</h4>
+**⚠️ Common Pitfalls:**
 
 - **Parser Complexity**: Start with simple grammar, add features incrementally
 - **Error Handling**: Provide clear error messages with source locations
@@ -280,8 +276,6 @@ Your Phase 3 implementation should be designed for Phase 4 storage integration:
 - **Expression Evaluation**: Watch out for operator precedence bugs
 - **Performance**: Avoid quadratic algorithms for large datasets
 - **SQL Compliance**: Test against standard SQL behavior expectations
-
-</div>
 
 ## Language-Specific Considerations
 

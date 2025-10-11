@@ -94,7 +94,7 @@ graph TB
 
 ## 📚 Learning Progression
 
-### Phase 1: Command-Line Client <span class="phase-badge phase-1">Weeks 1-2</span>
+### Phase 1: Command-Line Client *(Weeks 1-2)*
 
 **Goal**: Build a robust SQL shell with excellent user experience
 
@@ -112,7 +112,7 @@ graph TB
 - Table formatting and terminal output
 - File I/O and configuration parsing
 
-### Phase 2: Network Server <span class="phase-badge phase-2">Weeks 3-6</span>
+### Phase 2: Network Server *(Weeks 3-6)*
 
 **Goal**: Create a production-ready TCP server
 
@@ -130,7 +130,7 @@ graph TB
 - JSON parsing and generation
 - Logging frameworks
 
-### Phase 3: SQL Processing <span class="phase-badge phase-3">Weeks 7-12</span>
+### Phase 3: SQL Processing *(Weeks 7-12)*
 
 **Goal**: Build a complete SQL query engine
 
@@ -148,7 +148,7 @@ graph TB
 - Abstract syntax trees (ASTs)
 - Hash maps and efficient data structures
 
-### Phase 4: Persistent Storage <span class="phase-badge phase-4">Weeks 13-16</span>
+### Phase 4: Persistent Storage *(Weeks 13-16)*
 
 **Goal**: Implement disk-based storage with B+ trees
 
@@ -166,7 +166,7 @@ graph TB
 - Memory management and caching
 - Write-ahead logging
 
-### Phase 5: Production Features <span class="phase-badge phase-5">Weeks 17-18</span>
+### Phase 5: Production Features *(Weeks 17-18)*
 
 **Goal**: Add enterprise-grade features
 
@@ -195,17 +195,16 @@ graph TB
 
 ### Performance Targets
 
-<table class="perf-table">
-<tr><th>Component</th><th>Metric</th><th>Target</th></tr>
-<tr><td>Client</td><td>Startup time</td><td>&lt; 500ms</td></tr>
-<tr><td>Client</td><td>Command response</td><td>&lt; 100ms</td></tr>
-<tr><td>Server</td><td>Concurrent connections</td><td>100+</td></tr>
-<tr><td>Server</td><td>Message latency</td><td>&lt; 10ms</td></tr>
-<tr><td>Database</td><td>Simple queries (1K records)</td><td>&lt; 10ms</td></tr>
-<tr><td>Database</td><td>Complex queries (10K records)</td><td>&lt; 100ms</td></tr>
-<tr><td>Storage</td><td>B+ tree operations</td><td>&lt; 1ms</td></tr>
-<tr><td>System</td><td>Transaction throughput</td><td>&gt; 1000 TPS</td></tr>
-</table>
+| Component | Metric | Target |
+|-----------|---------|---------|
+| Client | Startup time | < 500ms |
+| Client | Command response | < 100ms |
+| Server | Concurrent connections | 100+ |
+| Server | Message latency | < 10ms |
+| Database | Simple queries (1K records) | < 10ms |
+| Database | Complex queries (10K records) | < 100ms |
+| Storage | B+ tree operations | < 1ms |
+| System | Transaction throughput | > 1000 TPS |
 
 ## 🧪 Testing Strategy
 

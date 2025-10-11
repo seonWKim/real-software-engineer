@@ -31,7 +31,7 @@ By completing Phase 2, you will gain practical experience in:
 
 ### Server Architecture - Pure Pass-Through
 
-<div class="file-tree">
+```
 server/
 ├── main.{ext}                # Entry point and configuration
 ├── tcp/
@@ -51,7 +51,7 @@ server/
 └── config/
     ├── settings.{ext}        # Configuration management
     └── args.{ext}            # Command-line argument parsing
-</div>
+```
 
 ## Task Breakdown
 
@@ -91,8 +91,7 @@ Integrate with your Phase 1 client and prepare the server for Phase 3 database e
 
 ## Server Role: Pure Networking Layer
 
-<div class="task-box">
-<h4>🎯 Key Principle: Server as Router</h4>
+**🎯 Key Principle: Server as Router**
 
 The Phase 2 server has **zero SQL intelligence**. Its only job is:
 
@@ -104,7 +103,6 @@ The Phase 2 server has **zero SQL intelligence**. Its only job is:
 6. **Manage** connection lifecycle and resources
 
 The server never parses, validates, or understands SQL - it's purely a networking and routing layer.
-</div>
 
 ## Success Criteria
 
@@ -139,14 +137,13 @@ The server never parses, validates, or understands SQL - it's purely a networkin
 
 ## Performance Requirements
 
-<table class="perf-table">
-<tr><th>Metric</th><th>Target</th><th>Rationale</th></tr>
-<tr><td>Concurrent Connections</td><td>100+</td><td>Support multiple users simultaneously</td></tr>
-<tr><td>Message Latency</td><td>&lt; 10ms</td><td>Responsive user experience</td></tr>
-<tr><td>Connection Setup</td><td>&lt; 50ms</td><td>Fast client connection establishment</td></tr>
-<tr><td>Memory per Connection</td><td>&lt; 1MB</td><td>Scalable resource usage</td></tr>
-<tr><td>Throughput</td><td>1000+ msg/sec</td><td>Handle high request volumes</td></tr>
-</table>
+| Metric | Target | Rationale |
+|--------|--------|-----------|
+| Concurrent Connections | 100+ | Support multiple users simultaneously |
+| Message Latency | < 10ms | Responsive user experience |
+| Connection Setup | < 50ms | Fast client connection establishment |
+| Memory per Connection | < 1MB | Scalable resource usage |
+| Throughput | 1000+ msg/sec | Handle high request volumes |
 
 ## Testing Strategy
 
@@ -221,8 +218,7 @@ Your Phase 2 server should be architected to easily integrate with a database en
 
 ## Common Challenges
 
-<div class="warning-box">
-<h4>⚠️ Common Pitfalls</h4>
+**⚠️ Common Pitfalls:**
 
 - **Resource Leaks**: Always clean up client connections and threads
 - **Thread Safety**: Protect shared data structures with proper synchronization
@@ -230,8 +226,6 @@ Your Phase 2 server should be architected to easily integrate with a database en
 - **Message Framing**: Handle TCP stream boundaries correctly
 - **Memory Management**: Limit per-client memory usage to prevent DoS
 - **Graceful Shutdown**: Properly close all connections on server exit
-
-</div>
 
 ## Language-Specific Considerations
 

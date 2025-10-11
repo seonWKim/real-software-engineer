@@ -32,7 +32,7 @@ By completing Phase 1, you will gain practical experience in:
 
 ### Technical Architecture
 
-<div class="file-tree">
+```
 client/
 ├── main.{ext}                # Entry point and argument parsing
 ├── cli/
@@ -49,7 +49,7 @@ client/
 └── config/
     ├── settings.{ext}        # Configuration management
     └── args.{ext}            # Command-line argument parsing
-</div>
+```
 
 ## Task Breakdown
 
@@ -107,13 +107,12 @@ Implement user-friendly error handling with syntax suggestions and clear error m
 
 ## Performance Requirements
 
-<table class="perf-table">
-<tr><th>Metric</th><th>Target</th><th>Rationale</th></tr>
-<tr><td>Startup Time</td><td>&lt; 500ms</td><td>Users expect tools to start quickly</td></tr>
-<tr><td>Command Response</td><td>&lt; 100ms</td><td>Interactive tools must feel responsive</td></tr>
-<tr><td>Memory Usage</td><td>&lt; 50MB</td><td>CLI tools should be lightweight</td></tr>
-<tr><td>Table Formatting</td><td>&lt; 1s for 10K rows</td><td>Large results should display efficiently</td></tr>
-</table>
+| Metric | Target | Rationale |
+|--------|--------|-----------|
+| Startup Time | < 500ms | Users expect tools to start quickly |
+| Command Response | < 100ms | Interactive tools must feel responsive |
+| Memory Usage | < 50MB | CLI tools should be lightweight |
+| Table Formatting | < 1s for 10K rows | Large results should display efficiently |
 
 ## Testing Strategy
 
@@ -141,16 +140,13 @@ Implement user-friendly error handling with syntax suggestions and clear error m
 
 ## Common Challenges
 
-<div class="warning-box">
-<h4>⚠️ Common Pitfalls</h4>
+**⚠️ Common Pitfalls:**
 
 - **Terminal Compatibility**: Different terminals handle escape sequences differently
 - **Unicode Support**: Box-drawing characters may not display correctly on all systems
 - **Input Buffering**: Managing input streams properly across different platforms
 - **Signal Handling**: Graceful handling of Ctrl+C and other interrupt signals
 - **Memory Management**: Efficient handling of large result sets and command history
-
-</div>
 
 ## Preparation for Phase 2
 

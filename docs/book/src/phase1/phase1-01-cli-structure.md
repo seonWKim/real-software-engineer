@@ -16,7 +16,7 @@ To copy the test cases and run them,
 
 In this task, you will need to create:
 
-<div class="file-tree">
+```
 client/
 ├── main.{rs,cpp,py,go,java}     # Entry point
 ├── cli/
@@ -25,7 +25,7 @@ client/
 │   └── mock.{rs,cpp,py,go,java}   # Mock response formatter
 └── config/
     └── args.{rs,cpp,py,go,java}   # Basic argument parsing
-</div>
+```
 
 ## Step 1: Entry Point and Input Methods
 
@@ -434,16 +434,13 @@ public class InputHandler {
 
 ## Common Pitfalls
 
-<div class="warning-box">
-<h4>⚠️ Watch Out For</h4>
+**⚠️ Watch Out For:**
 
 - **Input Buffering**: Ensure proper handling of different input sources
 - **Signal Handling**: Handle Ctrl+C gracefully in interactive mode
 - **File Encoding**: Support UTF-8 input files correctly
 - **Empty Commands**: Handle empty lines and whitespace-only input
 - **Resource Cleanup**: Close files and clean up resources properly
-
-</div>
 
 ## Test Your Understanding
 
