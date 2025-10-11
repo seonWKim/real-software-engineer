@@ -1,13 +1,13 @@
-# Real Engineer Project: Student Guide
+# Real Engineer Project: Build Your Own Database System
 
 ## 🎯 What You'll Build
 
-You'll create a complete **three-tier system** from scratch: a command-line **client**, a networked **server**, and a persistent **database engine**. This mirrors real-world software architecture and teaches you how client-server systems, network protocols, and storage engines work together.
+Build a complete **three-tier database system** from scratch: an interactive **client**, a networked **server**, and a persistent **database engine**. This project teaches real-world software architecture and systems programming.
 
 **The Three Components:**
-1. **Client**: Interactive SQL shell with networking capabilities
-2. **Server**: Multi-threaded TCP server handling client connections
-3. **Database**: SQL parser, query engine, and persistent storage with B+ trees
+1. **Client**: Interactive SQL command-line interface
+2. **Server**: Multi-threaded TCP server with JSON protocol
+3. **Database**: SQL parser, query engine, and B+ tree storage
 
 ## 🚀 Quick Start
 
@@ -267,18 +267,21 @@ Your server should accept JSON messages over TCP:
 4. **Ask questions**: Use the community forum
 5. **Office hours**: Attend weekly virtual sessions
 
-## Next Steps
+## 🚀 Getting Started
 
-1. **Choose your language** and set up your development environment
-2. **Read Phase 1 guide** in `docs/phase-guides/phase-1-client-interface.md`
-3. **Start coding** your command-line client
-4. **Run tests early and often**
+1. **Setup**: Choose your language and initialize your project workspace
+2. **Phase 1**: Read `docs/phase-guides/phase-1-client.md` and start building
+3. **Test Early**: Run tests frequently to validate your implementation
+4. **Iterate**: Build incrementally, focusing on one component at a time
 
-Remember: You're building a complete **three-tier system**. Each component teaches different skills:
-- **Client**: User experience and interface design
-- **Server**: Network programming and concurrent systems  
-- **Database**: Algorithms, data structures, and storage systems
+### Project Structure
+```
+real-software-engineer/
+├── docs/                    # Comprehensive documentation
+├── reference-implementation/ # Rust reference code
+├── test-suite/             # Language-agnostic tests
+├── tools/                  # Testing and development tools
+└── student-submissions/    # Your implementation workspace
+```
 
-Take time to understand how all three components work together to create a production system.
-
-**Ready to become a real engineer? Start building!**
+**Ready to build a real database system? Start with Phase 1!**
