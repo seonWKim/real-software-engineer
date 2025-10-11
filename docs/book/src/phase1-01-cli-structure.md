@@ -3,7 +3,6 @@
 In this task, you will:
 
 * Create the foundation for your command-line client
-* Implement multiple input methods (interactive, file, pipe, arguments)
 * Establish basic SQL command recognition
 * Set up mock response handling for testing
 

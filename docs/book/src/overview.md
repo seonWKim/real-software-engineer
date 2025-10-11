@@ -6,7 +6,47 @@ You'll create a complete **three-tier database system** from scratch: an interac
 and a persistent **database engine**. This mirrors real-world software architecture and teaches systems programming
 fundamentals.
 
-![System Architecture](./images/architecture-overview.svg)
+```mermaid
+graph TB
+    subgraph "Phase 1: Client Layer"
+        C[Interactive SQL Shell]
+        C1[CLI Interface]
+        C2[Table Formatting]
+        C3[Network Client]
+        C --> C1
+        C --> C2
+        C --> C3
+    end
+    
+    subgraph "Phase 2: Server Layer"
+        S[TCP Server]
+        S1[Connection Handler]
+        S2[Protocol Parser]
+        S3[SQL Router]
+        S --> S1
+        S --> S2
+        S --> S3
+    end
+    
+    subgraph "Phase 3-5: Database Layer"
+        D[Database Engine]
+        D1[SQL Lexer/Parser]
+        D2[Query Executor]
+        D3[Storage Engine]
+        D4[Transaction Manager]
+        D --> D1
+        D --> D2
+        D --> D3
+        D --> D4
+    end
+    
+    C3 -.->|Custom Protocol<br/>Raw SQL Strings| S1
+    S3 -.->|Function Calls<br/>Parsed Results| D1
+    
+    style C fill:#e1f5fe
+    style S fill:#f3e5f5
+    style D fill:#e8f5e8
+```
 
 ### The Three Components
 
