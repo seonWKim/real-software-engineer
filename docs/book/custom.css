@@ -1,0 +1,145 @@
+/* Custom CSS for Real Engineer Project Book */
+
+/* Override default theme colors */
+:root {
+    --sidebar-width: 300px;
+    --page-padding: 15px;
+    --content-max-width: 750px;
+    --menu-bar-height: 50px;
+}
+
+/* Custom header styling */
+.menu-title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Code block styling */
+.hljs {
+    border-radius: 6px;
+    padding: 1em;
+}
+
+/* Task boxes */
+.task-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #007bff;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 6px 6px 0;
+}
+
+.task-box h4 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+/* Warning boxes */
+.warning-box {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 6px 6px 0;
+}
+
+.warning-box h4 {
+    margin-top: 0;
+    color: #856404;
+}
+
+/* Success boxes */
+.success-box {
+    background-color: #d4edda;
+    border-left: 4px solid #28a745;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 6px 6px 0;
+}
+
+.success-box h4 {
+    margin-top: 0;
+    color: #155724;
+}
+
+/* Phase badges */
+.phase-badge {
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    font-size: 0.875em;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.375rem;
+    margin-right: 0.5em;
+}
+
+.phase-1 { background-color: #6f42c1; }
+.phase-2 { background-color: #007bff; }
+.phase-3 { background-color: #28a745; }
+.phase-4 { background-color: #ffc107; color: #212529; }
+.phase-5 { background-color: #dc3545; }
+
+/* Command line styling */
+.command-line {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    margin: 1rem 0;
+}
+
+.command-line::before {
+    content: "$ ";
+    color: #48bb78;
+    font-weight: bold;
+}
+
+/* File tree styling */
+.file-tree {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+}
+
+/* Performance metrics table */
+.perf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.perf-table th,
+.perf-table td {
+    border: 1px solid #dee2e6;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.perf-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Navigation improvements */
+.chapter-item {
+    line-height: 1.5;
+}
+
+.chapter-item .chapter-item {
+    margin-left: 1rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 260px;
+        --page-padding: 10px;
+    }
+}

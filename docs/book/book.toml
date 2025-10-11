@@ -1,0 +1,34 @@
+[book]
+authors = ["Real Engineer Project"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Build Your Own Database System"
+description = "A comprehensive guide to building a complete three-tier database system from scratch"
+
+[preprocessor.toc]
+command = "mdbook-toc"
+renderer = ["html"]
+
+[output.html]
+additional-css = ["custom.css"]
+git-repository-url = "https://github.com/seonWKim/real-software-engineer"
+git-repository-icon = "fa-github"
+edit-url-template = "https://github.com/seonWKim/real-software-engineer/edit/main/docs/book/{path}"
+site-url = "https://seonWKim.github.io/real-software-engineer/"
+cname = "real-engineer.dev"
+default-theme = "light"
+preferred-dark-theme = "navy"
+copy-fonts = true
+no-section-label = false
+
+[output.html.fold]
+enable = true
+level = 1
+
+[output.html.playground]
+editable = true
+copyable = true
+copy-js = true
+line-numbers = false
+runnable = false
